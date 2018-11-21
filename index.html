@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Strona główna</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<link href='https://fonts.googleapis.com/css?family=Karla' rel='stylesheet'>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="wrapper">
+	<div class="baner-container">
+		<img src="baner.png" id="baner"/>
+	</div>
+
+	<div class="content-container">
+		<div class="menu">
+			<a href="#" id="mainSite" class="menu-button menu-button-active">Strona główna</a>
+			<a href="article.html" id="anotherSite" class="menu-button">Przykładowy artykuł</a>
+		</div>
+		<div class="articles">
+			<div class="article">
+				<h1 class="article-title">A</h1>
+				<h6 class="article-categories">
+					Kategorie: 
+					<a class="article-category">Dymy</a>
+					<a class="article-category">Dymy</a>
+					<a class="article-category">Dymy</a>
+				</h6>
+				<p class="article-content">Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker</p>
+			</div>
+
+			<div class="article">
+				<h1 class="article-title">B</h1>
+				<h6 class="article-categories">
+					Kategorie: 
+					<a class="article-category">Dymy</a>
+					<a class="article-category">Dymy</a>
+					<a class="article-category">Dymy</a>
+				</h6>
+				<p class="article-content">Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker</p>
+			</div>
+
+			<div class="article">
+				<h1 class="article-title">C</h1>
+				<h6 class="article-categories">
+					Kategorie: 
+					<a class="article-category">Dymy</a>
+					<a class="article-category">Dymy</a>
+					<a class="article-category">Dymy</a>
+				</h6>
+				<p class="article-content">Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker</p>
+			</div>
+
+			<div class="articles-pages" id="articles-pages">
+				<p class="articles-pages-desc" id="articles-pages-desc">Strona 1 z 5</p>
+			</div>
+		</div>
+		<div class="sidebar">
+			<div class="sidebar-item">
+				<h3 class="sidebar-item-header">Kategorie</h3>
+				<div class="sidebar-item-category">
+					Lorem Ipsum
+				</div>
+			</div>
+			<div class="sidebar-item">
+				<h3 class="sidebar-item-header">Kategorie</h3>
+				<div class="sidebar-item-category">
+					Lorem Ipsum
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer-container">
+		<img src="footer.png" id="footer"/>
+	</div>
+</div>
+<script type="text/javascript">
+	var numberOfPages = 10;
+	var pageActive = 4;
+
+	function prepareArticlesPages(numberOfPages, pageActive) {
+		var startingPage = 1;
+		var endingPage = 5;
+		if (pageActive <= 3) {
+			startingPage = 1;
+			endingPage = 5;
+		} else if (pageActive > 3 && pageActive < numberOfPages - 4) {
+			startingPage = pageActive - 2;
+			endingPage = pageActive + 2;
+		} else if (pageActive >= numberOfPages - 4) {
+			startingPage = numberOfPages - 4;
+			endingPage = numberOfPages;
+		}
+		if (endingPage > numberOfPages)
+			endingPage = numberOfPages;
+
+		var articlePages = document.getElementById('articles-pages');
+
+		if (startingPage != 1) {
+				articlePages.innerHTML += "<a class=\"article-page\">Pierwsza</a>";
+				articlePages.innerHTML += "<span class=\"article-page-dots\">...</span>";
+		}
+
+		for (i = startingPage; i <= endingPage; i++) {
+			if (i == pageActive)
+				articlePages.innerHTML += "<a class=\"article-page article-page-active\">" + i + "</a>";
+			else 
+				articlePages.innerHTML += "<a class=\"article-page\">" + i + "</a>";
+		}
+
+		if (endingPage != numberOfPages) {
+				articlePages.innerHTML += "<span class=\"article-page-dots\">...</span>";
+				articlePages.innerHTML += "<a class=\"article-page\">Ostatnia</a>";
+		}
+
+		var articlePagesDesc = document.getElementById('articles-pages-desc');
+		articlePagesDesc.innerHTML = "Strona " + pageActive + " z " + numberOfPages;
+	}
+	prepareArticlesPages(numberOfPages, pageActive);
+
+</script>
+</body>
+</html>
